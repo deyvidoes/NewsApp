@@ -5,6 +5,8 @@ import com.example.news.util.Constants;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
@@ -15,12 +17,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class RetrofitModule {
 
-
+    @Singleton
     @Provides
-    NewsApi provideNewsApi(Retrofit retrofit){
+    static NewsApi provideNewsApi(Retrofit retrofit){
         return retrofit.create(NewsApi.class);
     }
 
+    @Singleton
     @Provides
     static OkHttpClient provideHttpClient(){
         return new OkHttpClient().newBuilder()
@@ -29,16 +32,19 @@ public class RetrofitModule {
                 .build();
     }
 
+    @Singleton
     @Provides
     static GsonConverterFactory provideGsonConverterFactory(){
         return GsonConverterFactory.create();
     }
 
+    @Singleton
     @Provides
     static RxJavaCallAdapterFactory provideRxJavaCallAdapterFactory(){
         return RxJavaCallAdapterFactory.create();
     }
 
+    @Singleton
     @Provides
     static Retrofit provideRetrofit(OkHttpClient okHttpClient,
                                     GsonConverterFactory gsonConverterFactory,

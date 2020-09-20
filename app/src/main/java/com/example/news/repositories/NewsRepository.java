@@ -4,6 +4,8 @@ package com.example.news.repositories;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.news.NewsApp;
+import com.example.news.di.AppComponent;
 import com.example.news.di.DaggerAppComponent;
 import com.example.news.interfaces.NewsApi;
 import com.example.news.models.NewsResponse;
@@ -18,8 +20,9 @@ public class NewsRepository {
     private MutableLiveData<NewsResponse> topNewsData;
     private MutableLiveData<NewsResponse> newsByWordData;
 
-    public NewsRepository() {
-        newsApi = DaggerAppComponent.create().getApiInterface();
+    public NewsRepository(AppComponent appComponent) {
+//        newsApi = DaggerAppComponent.create().getApiInterface();
+        newsApi = appComponent.getApiInterface();
         topNewsData = new MutableLiveData<>();
         newsByWordData = new MutableLiveData<>();
     }

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.news.NewsApp;
 import com.example.news.R;
 import com.example.news.adapters.NewsAdapter;
 import com.example.news.models.Article;
@@ -36,7 +37,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initWidgets(View view) {
-        mNewsViewModel = new NewsViewModel();
+        mNewsViewModel = new NewsViewModel(((NewsApp) requireActivity().getApplication()).getAppComponent());
         mRecyclerView = view.findViewById(R.id.top_news_recycler);
     }
 

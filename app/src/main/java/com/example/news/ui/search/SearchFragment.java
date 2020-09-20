@@ -2,7 +2,6 @@ package com.example.news.ui.search;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.news.NewsApp;
 import com.example.news.R;
 import com.example.news.adapters.NewsAdapter;
 import com.example.news.models.Article;
@@ -50,7 +49,7 @@ public class SearchFragment extends Fragment {
     //TODO: change api call to get data for the current date
 
     private void initWidgets(View view) {
-        mNewsViewModel = new NewsViewModel();
+        mNewsViewModel = new NewsViewModel(((NewsApp) requireActivity().getApplication()).getAppComponent());
         mSearchBtn = view.findViewById(R.id.btn_search);
         mSearchText = view.findViewById(R.id.et_search);
     }
@@ -65,7 +64,7 @@ public class SearchFragment extends Fragment {
         });
 
         mSearchText.setOnEditorActionListener((textView, i, keyEvent) -> {
-            if(i == EditorInfo.IME_ACTION_SEARCH){
+            if (i == EditorInfo.IME_ACTION_SEARCH) {
                 String text = mSearchText.getText().toString();
                 if (text.isEmpty())
                     Toast.makeText(getContext(), "Please enter a keyword to search", Toast.LENGTH_LONG).show();
