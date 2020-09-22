@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.news.NewsApp;
 import com.example.news.R;
 import com.example.news.adapters.NewsAdapter;
+import com.example.news.interfaces.NewsApi;
 import com.example.news.models.Article;
 import com.example.news.util.Constants;
 import com.example.news.viewmodels.NewsViewModel;
@@ -28,19 +29,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.inject.Inject;
+
 public class SearchFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLayoutManager;
     private NewsAdapter mRecyclerAdapter;
-    private NewsViewModel mNewsViewModel;
     private List<Article> mArticles = new ArrayList<>();
     private Button mSearchBtn;
     private EditText mSearchText;
 
+    @Inject
+    NewsViewModel mNewsViewModel;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ((NewsApp) requireActivity().getApplication()).getAppComponent().inject(this);
+
         initWidgets(view);
         initRecyclerView(view);
         setupListeners();
@@ -49,7 +57,6 @@ public class SearchFragment extends Fragment {
     //TODO: change api call to get data for the current date
 
     private void initWidgets(View view) {
-        mNewsViewModel = new NewsViewModel(((NewsApp) requireActivity().getApplication()).getAppComponent());
         mSearchBtn = view.findViewById(R.id.btn_search);
         mSearchText = view.findViewById(R.id.et_search);
     }

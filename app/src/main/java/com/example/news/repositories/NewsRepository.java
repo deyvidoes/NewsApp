@@ -20,9 +20,8 @@ public class NewsRepository {
     private MutableLiveData<NewsResponse> topNewsData;
     private MutableLiveData<NewsResponse> newsByWordData;
 
-    public NewsRepository(AppComponent appComponent) {
-//        newsApi = DaggerAppComponent.create().getApiInterface();
-        newsApi = appComponent.getApiInterface();
+    public NewsRepository(NewsApi newsApi) {
+        this.newsApi = newsApi;
         topNewsData = new MutableLiveData<>();
         newsByWordData = new MutableLiveData<>();
     }

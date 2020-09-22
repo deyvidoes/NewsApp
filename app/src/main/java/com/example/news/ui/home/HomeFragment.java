@@ -21,23 +21,29 @@ import com.example.news.viewmodels.NewsViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class HomeFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private NewsAdapter mRecyclerAdapter;
-    private NewsViewModel mNewsViewModel;
     private List<Article> mArticles = new ArrayList<>();
+
+    @Inject
+    NewsViewModel mNewsViewModel;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ((NewsApp) requireActivity().getApplication()).getAppComponent().inject(this);
+
         initWidgets(view);
         initRecyclerView(view);
         updateData();
     }
 
     private void initWidgets(View view) {
-        mNewsViewModel = new NewsViewModel(((NewsApp) requireActivity().getApplication()).getAppComponent());
         mRecyclerView = view.findViewById(R.id.top_news_recycler);
     }
 
