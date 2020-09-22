@@ -4,9 +4,6 @@ package com.example.news.repositories;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.news.NewsApp;
-import com.example.news.di.AppComponent;
-import com.example.news.di.DaggerAppComponent;
 import com.example.news.interfaces.NewsApi;
 import com.example.news.models.NewsResponse;
 import com.example.news.util.Constants;

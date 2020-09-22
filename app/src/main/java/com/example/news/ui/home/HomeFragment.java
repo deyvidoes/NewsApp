@@ -24,8 +24,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class HomeFragment extends Fragment {
-
-    private RecyclerView mRecyclerView;
     private NewsAdapter mRecyclerAdapter;
     private List<Article> mArticles = new ArrayList<>();
 
@@ -37,17 +35,12 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ((NewsApp) requireActivity().getApplication()).getAppComponent().inject(this);
-
-        initWidgets(view);
         initRecyclerView(view);
         updateData();
     }
 
-    private void initWidgets(View view) {
-        mRecyclerView = view.findViewById(R.id.top_news_recycler);
-    }
-
     private void initRecyclerView(View view) {
+        RecyclerView mRecyclerView = view.findViewById(R.id.top_news_recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         mRecyclerAdapter = new NewsAdapter(view.getContext(), mArticles);
         mRecyclerView.setAdapter(mRecyclerAdapter);

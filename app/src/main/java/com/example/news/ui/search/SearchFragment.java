@@ -31,7 +31,6 @@ import javax.inject.Inject;
 
 public class SearchFragment extends Fragment {
 
-    private RecyclerView mRecyclerView;
     private LinearLayoutManager mLayoutManager;
     private NewsAdapter mRecyclerAdapter;
     private List<Article> mArticles = new ArrayList<>();
@@ -54,16 +53,14 @@ public class SearchFragment extends Fragment {
 
     //TODO: Have recycler jump to top of the list after a search.
     //TODO: Have search word selected if clicked after searching.
-    
+
     private void initWidgets(View view) {
         mSearchBtn = view.findViewById(R.id.btn_search);
         mSearchText = view.findViewById(R.id.et_search);
     }
 
     public void setupListeners() {
-        mSearchBtn.setOnClickListener(view -> {
-            updateDataIfPossible();
-        });
+        mSearchBtn.setOnClickListener(view -> updateDataIfPossible());
 
         mSearchText.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_SEARCH) {
@@ -83,7 +80,7 @@ public class SearchFragment extends Fragment {
     }
 
     private void initRecyclerView(View view) {
-        mRecyclerView = view.findViewById(R.id.search_recycler);
+        RecyclerView mRecyclerView = view.findViewById(R.id.search_recycler);
         mLayoutManager = new LinearLayoutManager(view.getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerAdapter = new NewsAdapter(view.getContext(), mArticles);
