@@ -53,8 +53,9 @@ public class HomeFragment extends Fragment {
         mRecyclerView.setAdapter(mRecyclerAdapter);
     }
 
+    //TODO: Allow user to pick different countries
     private void updateData() {
-        mNewsViewModel.getTopNewsData(Constants.COUNTRY_US, Constants.API_KEY).observe(getViewLifecycleOwner(), newsResponse -> {
+        mNewsViewModel.getTopNewsData(Constants.COUNTRY_US).observe(getViewLifecycleOwner(), newsResponse -> {
             mArticles.clear();
             mArticles.addAll(newsResponse.getArticles());
             mRecyclerAdapter.notifyDataSetChanged();

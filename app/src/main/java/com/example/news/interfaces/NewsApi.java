@@ -15,5 +15,7 @@ public interface NewsApi {
 
     @GET("v2/everything")
     Call<NewsResponse> getNewsByWord(@Query("q") String word,
+                                     @Query("from") String date,
+                                     @Query("sortBy") String sortBy,
                                      @Query("apiKey") String key);
 }

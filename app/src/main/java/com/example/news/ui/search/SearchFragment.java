@@ -20,9 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.news.NewsApp;
 import com.example.news.R;
 import com.example.news.adapters.NewsAdapter;
-import com.example.news.interfaces.NewsApi;
 import com.example.news.models.Article;
-import com.example.news.util.Constants;
 import com.example.news.viewmodels.NewsViewModel;
 
 import java.util.ArrayList;
@@ -54,8 +52,9 @@ public class SearchFragment extends Fragment {
         setupListeners();
     }
 
-    //TODO: change api call to get data for the current date
-
+    //TODO: Have recycler jump to top of the list after a search.
+    //TODO: Have search word selected if clicked after searching.
+    
     private void initWidgets(View view) {
         mSearchBtn = view.findViewById(R.id.btn_search);
         mSearchText = view.findViewById(R.id.et_search);
@@ -63,25 +62,24 @@ public class SearchFragment extends Fragment {
 
     public void setupListeners() {
         mSearchBtn.setOnClickListener(view -> {
-            String text = mSearchText.getText().toString();
-            if (text.isEmpty())
-                Toast.makeText(getContext(), "Please enter a keyword to search", Toast.LENGTH_LONG).show();
-            else
-                updateData(text);
+            updateDataIfPossible();
         });
 
         mSearchText.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_SEARCH) {
-                String text = mSearchText.getText().toString();
-                if (text.isEmpty())
-                    Toast.makeText(getContext(), "Please enter a keyword to search", Toast.LENGTH_LONG).show();
-                else
-                    updateData(text);
-
+                updateDataIfPossible();
                 return true;
             } else
                 return false;
         });
+    }
+
+    private void updateDataIfPossible() {
+        String text = mSearchText.getText().toString();
+        if (text.isEmpty())
+            Toast.makeText(getContext(), "Please enter a keyword to search", Toast.LENGTH_LONG).show();
+        else
+            updateData(text);
     }
 
     private void initRecyclerView(View view) {
@@ -93,7 +91,7 @@ public class SearchFragment extends Fragment {
     }
 
     private void updateData(String word) {
-        mNewsViewModel.getNewsByWordData(word, Constants.API_KEY).observe(getViewLifecycleOwner(), newsResponse -> {
+        mNewsViewModel.getNewsByWordData(word).observe(getViewLifecycleOwner(), newsResponse -> {
             mArticles.clear();
             mArticles.addAll(newsResponse.getArticles());
             mRecyclerAdapter.notifyDataSetChanged();

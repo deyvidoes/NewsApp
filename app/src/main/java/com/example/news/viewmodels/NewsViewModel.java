@@ -18,11 +18,11 @@ public class NewsViewModel extends ViewModel {
         newsRepository = new NewsRepository(newsApi);
     }
 
-    public LiveData<NewsResponse> getTopNewsData(String country, String key) {
-        return newsRepository.getTopNews(country, key);
+    public LiveData<NewsResponse> getTopNewsData(String country) {
+        return newsRepository.getTopNews(country);
     }
 
-    public LiveData<NewsResponse> getNewsByWordData(String country, String key) {
-        return newsRepository.getNewsByWord(country, key);
+    public LiveData<NewsResponse> getNewsByWordData(String word) {
+        return newsRepository.getNewsByWord(word);
     }
 }
