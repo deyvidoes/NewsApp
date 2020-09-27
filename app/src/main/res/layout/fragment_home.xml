@@ -29,10 +29,10 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/toolbar">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentInsetStart="0dp"
@@ -45,21 +45,33 @@
             app:contentInsetStart="0dp"
             app:layout_scrollFlags="scroll|enterAlways">
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:padding="6dp"
-                android:text="TOP NEWS IN THE USA"
-                android:textAlignment="center"
-                android:textColor="@color/textToolbar"
-                android:textSize="26sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="3dp"
+                    android:text="@string/top_news"
+                    android:textAlignment="center"
+                    android:textColor="@color/textToolbar"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_country"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="3dp"
+                    android:textAlignment="center"
+                    android:text="(Country)"
+                    android:textColor="@color/subtextToolbar"
+                    android:textSize="16sp" />
+
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 

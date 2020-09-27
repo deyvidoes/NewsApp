@@ -1,0 +1,15 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Country">
+
+        <ListPreference
+            app:defaultValue="us"
+            app:entries="@array/country_entries"
+            app:entryValues="@array/country_values"
+            app:key="country"
+            app:title="Select country for top news"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -16,7 +16,8 @@
         <ImageView
             android:id="@+id/iv_article_image"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
+            android:adjustViewBounds="true"
             android:scaleType="fitXY"
             android:src="@drawable/ic_place_holder_250"/>
 

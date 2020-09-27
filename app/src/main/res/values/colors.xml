@@ -6,4 +6,5 @@
 
     <color name="backgroundToolbar">#6876F3</color>
     <color name="textToolbar">#FFFFFF</color>
+    <color name="subtextToolbar">#ECECEC</color>
 </resources>
